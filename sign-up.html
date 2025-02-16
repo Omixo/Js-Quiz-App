@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="/user-app/css/main.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="image-section">
+            <img src="/Assets for Quiz User App/cloud image.png" alt="" srcset="">
+        </div>
+        <div class="login-section">
+            <div class="credentials-section">
+                <h2>Signup</h2>
+                <p>Sign Up to Join</p>
+                <label for="fullName">Full Name <span class="mandatory">*</span> </label>
+                <input type="text" name="fullName" id="fullName" placeholder="Full Name">
+
+                <label for="emailId">Email ID <span class="mandatory">*</span> </label>
+                <input type="email" name="emailId" id="emailId" placeholder="xyz12@gmail.com">
+
+                <label for="password">Password <span class="mandatory">*</span> </label>
+                <input type="password" name="password" id="password" placeholder="Password">
+
+                <button id="login" onclick="signup()">Sign-Up</button>
+            </div>
+
+            <div class="card">
+                <img src="/Assets for Quiz User App/google.png" alt="" srcset="">
+                <p>Sign Up With Google</p>
+            </div>
+
+            <div class="middle" style="color:black">
+                <input type="checkbox" name="terms" id="terms" required>I accept <a href="#">Terms and conditions</a>
+                <p>Have an Account? <a href="index.html">Log In?</a></p>
+
+            </div>
+
+        </div>
+    </div>
+
+    <script src="/user-app/javascript/credenstials.js"></script>
+</body>
+
+</html>

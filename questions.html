@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz App - Questions</title>
+    <link rel="stylesheet" href="/user-app/css/main.css">
+</head>
+
+<body style="background-color: #F5F5F5;">
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">
+            <img src="/Assets for Quiz User App/techoaathshala_logo.png" alt="techoaathshala_logo">
+        </div>
+        <div class="menus">
+            <img src="/Assets for Quiz User App/profile_picture.png" alt="profile_picture">
+        </div>
+    </div>
+ 
+    <!-- Quiz Container -->
+    <div class="questions-container">
+        <h1 id="question-number" class="question-number">Question 1</h1>
+        <div class="progress">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div class="questions">
+            <h2 id="question-text" class="question">Loading...</h2>
+            <div id="options-container" class="options">
+                <!-- Options will be dynamically added here -->
+            </div>
+        </div>
+
+
+        <!-- Navigation Buttons -->
+        <div class="navigation-buttons">
+            <button id="previous-button" onclick="previousQuestion()">← Previous</button>
+            <button id="next-button" onclick="nextQuestion()">Next & Continue -></button>
+            <button id="submit-button" onclick="submitAnswers()" style="display: none;">Submit Quiz</button>
+            
+<!-- <button id="submit-button" onclick="submitAnswers()">Submit</button> -->
+        </div>
+    </div>
+
+    <!-- <script src="question.js" defer></script> -->
+    <script src="/user-app/javascript/question.js"></script>
+
+</body>
+
+</html>

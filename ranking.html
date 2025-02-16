@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="user-app/css/main.css">
+    <style>
+        .popup-container {
+            display: none; /* Initially hide the dropdown */
+            position: absolute;
+            right: 20px; /* Positioning the dropdown */
+            top: 60px; /* Adjust based on your layout */
+            background-color: white;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 10px;
+        }
+
+        .profile-photo {
+            cursor: pointer; /* Pointer cursor for profile picture */
+        }
+
+        .profile-photo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+
+        .popup-container button {
+            padding: 10px;
+            background-color: #F3BD00;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .popup-container button:hover {
+            background-color: #F3BD00;
+        }
+
+        /* Show the dropdown when the profile photo is clicked */
+        .profile-photo.active + .popup-container {
+            display: block;
+        }
+    </style>
+</head>
+
+<body style="background-color: #F5F5F5;">
+
+    <div class="navbar">
+        <div class="logo">
+            <img src="Assets for Quiz User App/techoaathshala_logo.png" alt="">
+        </div>
+        <div class="menus">
+            <img src="Assets for Quiz User App/profile_picture.png" alt="Profile" class="profile-photo" id="profile-photo" onclick="this.classList.toggle('active')">
+        </div>
+
+        <div class="popup-container" id="popup-container">
+            <div class="popup">
+                <button class="logout-btn" id="logout-btn" onclick="logout()">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="rank-container">
+        <h2 id="rank-heading">Wow You Rank 1st</h2>
+        <p id="rank">Supporting text</p>
+    </div>
+
+    <div class="top-three">
+        <div class="user-rank-second">
+            <h2>#2</h2>
+            <img src="Assets for Quiz User App/rank_image1.png" alt="">
+            <div class="score-display">
+                <h2 id="secondName"></h2>
+                <p id="second">844</p>
+            </div>
+        </div>
+        <div class="user-rank-first">
+            <img src="Assets for Quiz User App/rank_image2.png" alt="">
+            <div class="score-display">
+                <h2 id="firstName"></h2>
+                <p id="first">844</p>
+            </div>
+        </div>
+        <div class="user-rank-third">
+            <h2>#3</h2>
+            <img src="Assets for Quiz User App/rank_image3.png" alt="">
+            <div class="score-display">
+                <h2 id="thirdName"></h2>
+                <p id="third">844</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="user-scores">
+        <div class="current-users">
+            <div class="current-user">
+                <div class="current-user-rank"></div>
+                <div class="current-user-name"></div>
+            </div>
+            <div class="current-user-score"></div>
+        </div>
+        <div class="other-users-container"></div>
+    </div>
+
+   <script src="user-app/javascript/ranking.js"></script>
+</body>
+
+</html>

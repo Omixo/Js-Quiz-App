@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/user-app/css/main.css">
+    <script src="https://kit.fontawesome.com/18c32a2ab0.js" crossorigin="anonymous"></script>
+</head>
+<body style="background-color: #F5F5F5;">
+    <div class="navbar">
+        <div class="logo">
+            <img src="/Assets for Quiz User App/techoaathshala_logo.png" alt="" srcset="">
+        </div>
+        <div class="menus">
+            <a href="#">Edit Quizzes</a>
+            <a href="#">All Quizzes</a>
+            <img src="/Assets for Quiz User App/profile_picture.png" alt="" srcset="">
+        </div>
+    </div>
+    <!-- <hr class="underline"> -->
+
+    <div class="content">
+        <h2>Let's Start the Quiz</h2>
+        <i class="fa-regular fa-clock" style="color: #8E8E93;"></i> <span style="color:#8E8E93">10 min </span>
+        <ul>
+            <li>Disclaimer</li>
+            <li>Disclaimer</li>
+        </ul>
+
+        <div class="box-container">
+            <img src="/Assets for Quiz User App/Home Page Gray.png" alt="" srcset="">
+
+            <h2>Catchy Line for Starting Quiz</h2>
+            <p>When you're done, review your answers and See your rank</p>
+
+
+        
+
+            <button id="start" onclick="startQuiz()">Start Quiz</button>
+
+            <script>
+              function startQuiz() {
+                window.location.href = "questions.html";
+              }
+            </script>
+            
+        </div>
+
+        
+    </div>
+
+    
+</body>
+</html>
