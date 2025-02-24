@@ -107,116 +107,125 @@ document.addEventListener("DOMContentLoaded", function () {
     displayTestDetails();
 });
 
+
 function displayTestDetails() {
     const urlParams = new URLSearchParams(window.location.search);
-    const userEmail = decodeURIComponent(urlParams.get("email"));
+    const userEmail = urlParams.get("email");
     const testIndex = parseInt(urlParams.get("testIndex"), 10);
-
-    const quizResults = JSON.parse(localStorage.getItem("quizResults")) || [];
-    const user = quizResults.find(u => u.emailId === userEmail);
-    
-    if (!user || !Array.isArray(user.tests) || testIndex < 0 || testIndex >= user.tests.length) {
-        console.error("Test not found!", { user, testIndex });
-        return;
+  
+    const users = JSON.parse(localStorage.getItem("quizResults")) || [];
+    const user = users.find((u) => u.emailId === userEmail);
+  
+    if (!user) {
+      document.getElementById("user-test-data").innerHTML =
+        "<p>User not found!</p>";
+      return;
     }
-
+  
+    // Display user's identity
+    const identityDiv = document.querySelector(".identity");
+    identityDiv.innerHTML = `<h2>${user.fullName} | ${user.emailId}</h2>`;
+  
     const test = user.tests[testIndex];
-
-    // 🆔 Display User Identity
-    document.querySelector('.identity').innerHTML = `<h2>${user.fullName} | ${user.emailId}</h2>`;
-
-    // 🏆 Display Test Info
-    document.getElementById('test-number').textContent = `Test ${test.testNumber}`;
-    document.getElementById('test-score').textContent = `Score: ${test.score}`;
-    document.getElementById('test-date').textContent = `Test Date: ${new Date(test.dateTime).toLocaleDateString()}`;
-
-    // 📋 Display Test Questions
-    const userTestData = document.getElementById('user-test-data');
-    userTestData.innerHTML = '';
-
-    test.questions.forEach((questionObj, index) => {
-        if (!questionObj || !questionObj.questionText || !Array.isArray(questionObj.options)) {
-            console.error("Invalid question data:", questionObj);
-            return;
-        }
-
-        const questionDiv = document.createElement('div');
-        questionDiv.className = 'question-block';
-        questionDiv.innerHTML = `
-            <div class="question">
-                <h3>Question ${index + 1}</h3>
-                <p>${questionObj.questionText}</p>
-            </div>
-            <div class="options">
-                ${generateOptions(questionObj)}
-            </div>
-            <div class="answer-status">
-                <p>Your Answer: ${questionObj.selectedAnswer || 'No answer selected'}</p>
-                <p>Correct Answer: ${questionObj.correctAnswer || 'Not available'}</p>
-                <span class="${String(questionObj.selectedAnswer) === String(questionObj.correctAnswer) ? 'correct' : 'incorrect'}">
-                    ${String(questionObj.selectedAnswer) === String(questionObj.correctAnswer) ? '✅ Correct' : '❌ Incorrect'}
-                </span>
-            </div>
-        `;
-        userTestData.appendChild(questionDiv);
-    });
-
-    // 🔥 Add Click Event to Change Background Color to Violet on Click
-    document.querySelectorAll('.option').forEach(option => {
-        option.addEventListener('click', function () {
-            this.style.backgroundColor = 'violet';
-        });
-    });
-}
-
-//  Generate Options with Styling
-function generateOptions(questionObj) {
-    if (!Array.isArray(questionObj.options)) {
-        console.error("Invalid options format:", questionObj.options);
-        return '<div>No options available</div>';
+  
+    if (!test || !Array.isArray(test.questions)) {
+      document.getElementById("user-test-data").innerHTML =
+        "<p>No questions available for this test.</p>";
+      return;
     }
-
-    return questionObj.options.map((option, index) => {
-        const optionText = option.value || 'Option text not available';
-        const isSelected = String(questionObj.selectedAnswer) === String(option.id);
-        const isCorrect = String(questionObj.correctAnswer) === String(option.id);
-        
-        let backgroundColor = "";
-        let textColor = "";
-        let borderColor = "";
-
-        if (isSelected && !isCorrect) {
-            backgroundColor = "pink"; // ❌ Incorrect -> Pink
-            textColor = "red";
-            borderColor = "darkred";
-        } else if (isCorrect) {
-            backgroundColor = "lightgreen"; // ✅ Correct -> Green
-            textColor = "green";
-            borderColor = "darkgreen";
-        }
-
-        return `
-            <div class="option" 
-                data-option-id="${option.id}" 
-                style=" 
-                    background-color: ${backgroundColor}; 
-                    color: ${textColor}; 
-                    border: 2px solid ${borderColor};
-                    padding: 10px;
-                    margin: 5px;
-                    border-radius: 5px;
-                    display: flex;
-                    align-items: center;
-                    cursor: pointer;
-                    transition: background-color 0.3s;
-                ">
-                
-                <span class="option-number">Option ${index + 1}</span>
-                <span class="option-text" style="margin-left: 10px;">${optionText}</span>
-                
-                ${isSelected && !isCorrect ? '<span style="color: red; font-size: 18px; font-weight: bold; margin-left: 10px;">&#10006;</span>' : ''}
-                ${isCorrect ? '<span style="color: green; font-size: 18px; font-weight: bold; margin-left: 10px;">&#10004;</span>' : ''}
-            </div>
-        `;
-    }).join('');
-}
+  
+    const testContainer = document.getElementById("user-test-data");
+    testContainer.innerHTML = ""; // Ensure a fresh display
+  
+    // *Create Table*
+    const table = document.createElement("table");
+    table.classList.add("test-table");
+  
+    // *Create Table Header Row*
+    const thead = document.createElement("thead");
+    thead.innerHTML = `
+      <tr id="test-header">
+        <th>Test ${test.testNumber}</th>
+        <th>Score: ${test.score}</th>
+        <th>Time Taken: ${test.timeTaken}</th>
+        <th>Test Date: ${test.dateTime}</th>
+      </tr>
+    `;
+    table.appendChild(thead);
+  
+    // *Create Table Body*
+    const tbody = document.createElement("tbody");
+  
+    // *Loop through questions to create rows*
+    test.questions.forEach((questionObj, index) => {
+      const isCorrect =
+        parseInt(questionObj.selectedAnswer) ===
+        parseInt(questionObj.correctAnswer);
+  
+      // Convert options array into a structured format
+      const optionsArray = questionObj.options.map(({ id, value }) => ({
+        id,
+        text: value,
+      }));
+  
+      const row = document.createElement("tr");
+  
+      // *Create Table Cell for the Question Card*
+      const questionCardCell = document.createElement("td");
+      questionCardCell.colSpan = 4; // Span all columns
+  
+      // *Create Question Card*
+      const questionCard = document.createElement("div");
+      questionCard.classList.add("question-card");
+  
+      questionCard.innerHTML = `
+        <h4 class="question-title">Question ${index + 1}: ${
+        questionObj.questionText
+      }</h4>
+        <div class="options-container">
+          ${optionsArray
+            .map(({ id, text }) => {
+              const isSelected =
+                parseInt(id) === parseInt(questionObj.selectedAnswer);
+              const isCorrectOption =
+                parseInt(id) === parseInt(questionObj.correctAnswer);
+              const optionClass = isSelected
+                ? isCorrectOption
+                  ? "correct"
+                  : "wrong"
+                : isCorrectOption && !isSelected
+                ? "correct-answer"
+                : "";
+  
+              return `
+              <div class="bind-together">
+                <div style="width:90px">Option ${id}</div> 
+                <div style="display:flex ; justify-content: space-between" class="option ${optionClass}">
+                <div>${escapeHtml(text)}</div>
+                ${optionClass === "wrong" ? '<span class="icon">✖</span>' : ""}
+                ${optionClass === "correct" ? '<span class="icon">✔</span>' : ""}
+                </div>
+              </div>
+            `;
+            })
+            .join("")}
+        </div>
+      `;
+  
+      // Append question card inside the table cell
+      questionCardCell.appendChild(questionCard);
+      row.appendChild(questionCardCell);
+      tbody.appendChild(row);
+    });
+  
+    table.appendChild(tbody);
+    testContainer.appendChild(table);
+  }
+  
+  // Utility function to prevent HTML injection
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+  }
+  

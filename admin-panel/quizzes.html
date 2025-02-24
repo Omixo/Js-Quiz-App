@@ -23,13 +23,13 @@
             <img src="/Assets for Quiz User App/admin-profile.png" alt="" srcset="" class="profile-photo">
         </div>
         <div class="popup-container" id="popup-container">
-            <div class="popup">
+            <!-- <div class="popup">
                
                 <img src="/Assets for Quiz User App/admin-profile.png" alt="Admin Profile Picture" loading="lazy">
                 <p id="admin-name">Admin</p>
                 <p id="admin-email">admin@gmail.com</p>
                 <p><button id="logout-button">Logout</button></p>
-            </div>
+            </div> -->
         </div>
     </div>
     <div class="container">
@@ -57,151 +57,162 @@
         <div class="right-section-container">
             <h1>MCQ Question List</h1>
             <hr>
-
             <div class="new-question-button">
-                <button id="new-question">Add New Question</button>
-            </div>
-
-            <div class="questions-container">
-                <table id = "questions-table" class="quiz-table">
-                    <thead>
-                        <tr>
-                            <th class="index">Sr No</th>
-                            <th class="questions">Questions</th>
-                            <th class="icons">Actions</th>
-                        </tr>
-                    </thead>
-                    <!-- <tr>
-                        <td class="index">1</td>
-                        <td class="questions">How to link CSS in a HTML File?</td>
-                        <td class="icons"><i class="fa-duotone fa-solid fa-eye" style="color: #7965d8;"></i>
-                            <i class="fa-solid fa-pencil" style="color: #14C099;"></i>
-                            <i class="fa-solid fa-trash" style="color:#FF3C28"></i>
-                        </td> -->
-                    <!-- </tr> -->
-
-                    <tbody id="question-table-container">
-                        <!-- Questions will be inserted here dynamically -->
-                    </tbody>
+                <button id="new-question" onclick="showCreateQuestionPopup()">Add New Question</button>
+              </div>
+    
+              <div class="questions-container">
+                <table id="questions-table" class="quiz-table">
+                  <thead>
+                    <tr>
+                      <th class="index">Sr No</th>
+                      <th class="questions">Questions</th>
+                      <th class="icons">Actions</th>
+                    </tr>
+                  </thead>
+                  <!-- <tr>
+                                <td class="index">1</td>
+                                <td class="questions">How to link CSS in a HTML File?</td>
+                                <td class="icons"><i class="fa-duotone fa-solid fa-eye" style="color: #7965d8;"></i>
+                                    <i class="fa-solid fa-pencil" style="color: #14C099;"></i>
+                                    <i class="fa-solid fa-trash" style="color:#FF3C28"></i>
+                                </td> -->
+                  <!-- </tr> -->
+    
+                  <tbody id="question-table-container">
+                    <!-- Questions will be inserted here dynamically -->
+                  </tbody>
                 </table>
+              </div>
             </div>
-             
-
-        </div>
-
-
-        <!-- Create Question popup -->
-
-
-        <div class="create-question-popup">
-            <div class="option-heading">
-                <h3>Create Question</h3>
-                <div class="cross"><h5>X</h5></div>
-            </div>
-            
-            <div class="question-container">
-                <label for="question"><b>Question</b><span id = "required">*</span> </label>
-                <input type="text" name="question" id="question">
-                <label for="option1"><b>Option1</b><span id = "required">*</span> </label>
-                <input type="text" name="option1" id="option1">
-                <label for="option2"><b>Option2</b><span id = "required">*</span> </label>
-                <input type="text" name="option2" id="option2">
-                <label for="option3"><b>Option3</b><span id = "required">*</span> </label>
-                <input type="text" name="option3" id="option3">
-                <label for="option4"><b>Option4</b><span id = "required">*</span> </label>
-                <input type="text" name="option4" id="option4">
-                <label for="correct-option"><b>Correct Option</b></label>
-                <select name="correct-option" id="correct-option">
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                    <option value="4">Option 4</option>
-                </select>
-            </div>
-
-            <div class="submit-button">
-                <button id="add-new-question" onclick="addNewQuestion()">Submit</button>
-            </div>
-         </div>
-
-         <!-- Display Question Popup -->
-
-         <div class="view-question-popup" style="height:85vh">
-            <div class="option-heading">
+    
+            <!-- Display Question Popup -->
+    
+            <div class="view-question-popup" style="height: 85vh">
+              <div class="option-heading">
                 <h3>Question Details</h3>
-                <div class="cross"><h5>X</h5></div>
-            </div>
-
-            <div class="question-container">
-                <label for="popup-question"><b>Question</b><span id = "required">*</span> </label>
+                <div class="cross-question-popup"><h5>X</h5></div>
+              </div>
+    
+              <div class="question-container">
+                <label for="popup-question"
+                  ><b>Question</b><span id="required">*</span>
+                </label>
                 <p id="popup-question">Sample Question</p>
-                <label for="popup-option1"><b>Option1</b><span id = "required">*</span> </label>
+                <label for="popup-option1"
+                  ><b>Option1</b><span id="required">*</span>
+                </label>
                 <p id="popup-option1">Option1</p>
-                <label for="popup-option2"><b>Option2</b><span id = "required">*</span> </label>
+                <label for="popup-option2"
+                  ><b>Option2</b><span id="required">*</span>
+                </label>
                 <p id="popup-option2">Option2</p>
-                <label for="popup-option3"><b>Option3</b><span id = "required">*</span> </label>
+                <label for="popup-option3"
+                  ><b>Option3</b><span id="required">*</span>
+                </label>
                 <p id="popup-option3">Option3</p>
-                <label for="popup-option4"><b>Option4</b><span id = "required">*</span> </label>
+                <label for="popup-option4"
+                  ><b>Option4</b><span id="required">*</span>
+                </label>
                 <p id="popup-option4">Option4</p>
                 <label for="popup-correct-option"><b>Correct Option</b></label>
                 <p id="popup-correct-option">Correct option</p>
+              </div>
             </div>
-         </div>
-
-         <!-- Edit Question Popup -->
-         <div class="edit-question-popup">
-            <div class="option-heading">
+    
+            <!-- Edit Question Popup -->
+            <div class="edit-question-popup">
+              <div class="option-heading">
                 <h3>Edit Question</h3>
-                <div class="cross"><h5>X</h5></div>
-            </div>
-            
-            <div class="question-container">
-                <label for="edit-question"><b>Question</b><span id = "required">*</span> </label>
-                <input type="text" name="question" id="edit-question">
-                <label for="edit-option1"><b>Option1</b><span id = "required">*</span> </label>
-                <input type="text" name="edit-option1" id="edit-option1">
-                <label for="edit-option2"><b>Option2</b><span id = "required">*</span> </label>
-                <input type="text" name="edit-option2" id="edit-option2">
-                <label for="edit-option3"><b>Option3</b><span id = "required">*</span> </label>
-                <input type="text" name="edit-option3" id="edit-option3">
-                <label for="edit-option4"><b>Option4</b><span id = "required">*</span> </label>
-                <input type="text" name="edit-option4" id="edit-option4">
+                <div class="crossed"><h5>X</h5></div>
+              </div>
+    
+              <div class="question-container">
+                <label for="edit-question"
+                  ><b>Question</b><span id="required">*</span>
+                </label>
+                <input type="text" name="question" id="edit-question" />
+                <label for="edit-option1"
+                  ><b>Option1</b><span id="required">*</span>
+                </label>
+                <input type="text" name="edit-option1" id="edit-option1" />
+                <label for="edit-option2"
+                  ><b>Option2</b><span id="required">*</span>
+                </label>
+                <input type="text" name="edit-option2" id="edit-option2" />
+                <label for="edit-option3"
+                  ><b>Option3</b><span id="required">*</span>
+                </label>
+                <input type="text" name="edit-option3" id="edit-option3" />
+                <label for="edit-option4"
+                  ><b>Option4</b><span id="required">*</span>
+                </label>
+                <input type="text" name="edit-option4" id="edit-option4" />
                 <label for="edit-correct-option"><b>Correct Option</b></label>
                 <select name="edit-correct-option" id="edit-correct-option">
-                    <option value="1">Option 1</option>
-                    <option value="2">Option 2</option>
-                    <option value="3">Option 3</option>
-                    <option value="4">Option 4</option>
+                  <option value="1">Option 1</option>
+                  <option value="2">Option 2</option>
+                  <option value="3">Option 3</option>
+                  <option value="4">Option 4</option>
                 </select>
+              </div>
+    
+              <div class="submit-button">
+                <button id="edit-btn" onclick="editQuestion()">Submit</button>
+              </div>
             </div>
-
-            <div class="submit-button">
-                <button id="edit-btn">Submit</button>
-            </div>
-         </div>
-
-
-         <!-- delete popup -->
-
-         <!-- <div class="delete-popup">
-            <img src="/Images/warning.png" alt="" srcset="">
-            <h2>Are You Sure?</h2>
-            <p>You won't be able to revert this!</p>
-            <div class="buttons">
+    
+            <!-- Create Question popup -->
+             
+            <div class="create-question-popup">
+                <div class="option-heading">
+                    <h3>Create Question</h3>
+                    <div class="cross-create-question"><h5>X</h5></div>
+                </div>
+                
+                <div class="question-container">
+                    <label for="question"><b>Question</b><span id = "required">*</span> </label>
+                    <input type="text" name="question" id="question">
+                    <label for="option1"><b>Option1</b><span id = "required">*</span> </label>
+                    <input type="text" name="option1" id="option1">
+                    <label for="option2"><b>Option2</b><span id = "required">*</span> </label>
+                    <input type="text" name="option2" id="option2">
+                    <label for="option3"><b>Option3</b><span id = "required">*</span> </label>
+                    <input type="text" name="option3" id="option3">
+                    <label for="option4"><b>Option4</b><span id = "required">*</span> </label>
+                    <input type="text" name="option4" id="option4">
+                    <label for="correct-option"><b>Correct Option</b></label>
+                    <select name="correct-option" id="correct-option">
+                        <option value="1">Option 1</option>
+                        <option value="2">Option 2</option>
+                        <option value="3">Option 3</option>
+                        <option value="4">Option 4</option>
+                    </select>
+                </div>
+    
+                <div class="submit-button">
+                    <button id="add-new-question" onclick="addNewQuestion()">Submit</button>
+                </div>
+             </div>
+    
+    
+            
+            <!-- delete popup -->
+            <div class="deletion-popup">
+              <img src="/Assets for Quiz User App/warning.png" alt="" srcset="" />
+              <h2>Are You Sure?</h2>
+              <p>You won't be able to revert this!</p>
+              <div class="buttons-dc">
                 <button id="delete" onclick="deleteQuestion()">Delete</button>
                 <button id="cancel" onclick="cancelDeletion()">Cancel</button>
+              </div>
             </div>
-         </div> -->
-         
-
-    </section>
-</div>
-
-
-
+          </section>
+        </div>
 
 
     <script src="/admin-panel/javascript/quizzes.js"></script>
-    <script src="/admin-panel/javascript/dashboard-admin.js"></script>
+    <!-- <script src="/admin-panel/javascript/user.js"></script> -->
+    <!-- <script src="/admin-panel/javascript/dashboard-admin.js"></script> -->
 </body>
 </html>
