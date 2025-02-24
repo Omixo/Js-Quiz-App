@@ -82,8 +82,10 @@ function populateUserTestDetails() {
     user.tests.forEach((test, index) => {
         const row = document.createElement("tr");
         const formattedDate = new Date(test.dateTime).toLocaleDateString();
-        const correctAnswers = test.questions.filter(q => q.correctAnswer === q.selectedAnswer).length;
-
+    
+        // Corrected calculation for correct answers
+        const correctAnswers = Math.round((test.score / 1000) * test.questions.length);
+    
         row.innerHTML = `
             <td>${test.testNumber}</td>
             <td>${formattedDate}</td>
@@ -96,6 +98,7 @@ function populateUserTestDetails() {
         `;
         tableBody.appendChild(row);
     });
+    
 }
 
 document.addEventListener("DOMContentLoaded", function () {

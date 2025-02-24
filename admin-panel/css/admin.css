@@ -503,14 +503,99 @@ td {
     display: none;
   }
   
-  .deletion-popup {
-    display: none; /* Hidden initially */
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
-    border-radius: 8px;
+ 
+/* Background Overlay */
+.popup-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Dark background */
+  backdrop-filter: blur(5px); /* Blur effect */
+  z-index: 999;
+}
+
+/* Popup Box */
+/* Background Overlay */
+.deletion-popup {
+  display: none; /* Initially hidden */
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 25px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  text-align: center;
+  z-index: 1000;
+}
+
+/* Warning Icon */
+.deletion-popup img {
+  width: 50px;
+  height: auto;
+  margin-bottom: 15px;
+}
+
+/* Popup Title */
+.deletion-popup h2 {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Popup Message */
+.deletion-popup p {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* Buttons Container */
+.buttons-dc {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* Delete Button */
+#delete {
+  background: #3D3DC3; /* Blue */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* Cancel Button */
+#cancel {
+  background: #0DA57A; /* Green */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+/* Button Hover Effects */
+#delete:hover, #cancel:hover {
+  opacity: 0.8;
+}
+
+/* Show Popup */
+.deletion-popup.show {
+  display: block;
 }

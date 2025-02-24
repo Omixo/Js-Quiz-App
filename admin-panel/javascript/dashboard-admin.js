@@ -42,12 +42,27 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 
+// Select elements
+const profileicon = document.getElementById("profile-icon");  // Make sure you have this in your HTML
+const popupcontainer = document.getElementById("popup-container");
+const logoutbutton = document.getElementById("logout-button");
+
+// Toggle popup function
+function togglePopup(event) {
+    event.stopPropagation(); // Prevent click from triggering document event
+    if (popupContainer.style.display === "block") {
+        popupContainer.style.display = "none";
+    } else {
+        popupContainer.style.display = "block";
+    }
+}
+
 // Show/hide popup when clicking profile icon
 profileIcon.addEventListener("click", togglePopup);
 
 // Hide popup when clicking outside of it
 document.addEventListener("click", function (event) {
-    if (!popupContainer.contains(event.target) && !profileIcon.contains(event.target)) {
+    if (!popupContainer.contains(event.target) && event.target !== profileIcon) {
         popupContainer.style.display = "none";
     }
 });
