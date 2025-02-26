@@ -520,82 +520,60 @@ td {
 /* Popup Box */
 /* Background Overlay */
 .deletion-popup {
-  display: none; /* Initially hidden */
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 25px;
-  width: 90%;
-  max-width: 400px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
-  border-radius: 12px;
-  text-align: center;
-  z-index: 1000;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 200px;
+  left: 500px;
+  background-color: #ffff;
+  width: 700px;
+  height: 400px;
+  align-items: center;
+  /* display: flex; */
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  gap: 20px;
 }
-
-/* Warning Icon */
 .deletion-popup img {
-  width: 50px;
-  height: auto;
-  margin-bottom: 15px;
+  width: 150px;
 }
 
-/* Popup Title */
-.deletion-popup h2 {
-  font-size: 20px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 10px;
+.deletion-popup div {
+  /* align-items: center; */
+  margin-top: 20px;
 }
 
-/* Popup Message */
-.deletion-popup p {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 20px;
+.deletion-popup button {
+  font-size: 18px;
+  width: 100px;
+  height: 25px;
+  padding: 8px;
+  color: #ffff;
+  border: none;
 }
-
-/* Buttons Container */
 .buttons-dc {
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 25px;
 }
 
-/* Delete Button */
 #delete {
-  background: #3D3DC3; /* Blue */
-  color: white;
-  border: none;
-  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #085fe2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
   border-radius: 6px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
 }
 
-/* Cancel Button */
 #cancel {
-  background: #0DA57A; /* Green */
-  color: white;
-  border: none;
-  padding: 10px 20px;
+  font-size: 18px;
+  background-color: green;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
   border-radius: 6px;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-/* Button Hover Effects */
-#delete:hover, #cancel:hover {
-  opacity: 0.8;
-}
-
-/* Show Popup */
-.deletion-popup.show {
-  display: block;
 }
